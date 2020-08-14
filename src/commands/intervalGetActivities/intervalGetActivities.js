@@ -11,3 +11,7 @@ module.exports.startGetActivities = (message, timer) => {
     message
   );
 };
+
+module.exports.stopGetActivities = () => {
+  clearInterval(interval);
+};
