@@ -5,6 +5,10 @@ const { tableConfig } = require('../globals');
 const Table = require('../models/table');
 
 module.exports = async (message) => {
+  await runGetActivities(message, true);
+};
+
+const runGetActivities = async (message, shouldSendMessage) => {
   let tableOldObj = await getTableOldFromDB(message.guild.id);
 
   if (tableOldObj === null) {
@@ -14,11 +18,9 @@ module.exports = async (message) => {
 
     createTable(await getUserActivities(message), tableNew);
 
-    sendMessageTable(message, tableNew);
-
     await addTableToDB(tableNew, message.guild.id);
 
-    //send to db
+    if (shouldSendMessage) sendMessageTable(message, tableNew);
   } else {
     tableOld = tableOldObj.array;
 
@@ -32,9 +34,11 @@ module.exports = async (message) => {
 
     await addTableToDB(tableCombined, message.guild.id);
 
-    sendMessageTable(message,tableCombined);
+    if (shouldSendMessage) sendMessageTable(message, tableCombined);
   }
 };
+
+module.exports.runGetActivities = runGetActivities;
 
 function sendMessageTable(message, tableArray) {
   message.channel.send('`\n' + table(tableArray, tableConfig) + '`');
