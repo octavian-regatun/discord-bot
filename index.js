@@ -49,6 +49,10 @@ client.on('message', (message) => {
       require('./src/commands/getActivities')(message);
       break;
 
+    case 'startGetActivities':
+      require('./src/commands/startGetActivities')(message, args[0]);
+      break;
+
     default:
       message.reply(
         `Aceasta nu este o comandă! Pentru a vedea toate comenzile scrieți ${PREFIX}help`
