@@ -22,19 +22,13 @@ module.exports = async (message) => {
   } else {
     tableOld = tableOldObj.array;
 
-    console.log(tableOld);
-
     let tableNew = [[null]];
 
     const usersActivities = await getUserActivities(message);
 
     createTable(await getUserActivities(message), tableNew);
 
-    console.log(tableNew);
-
     let tableCombined = combineTables(tableOldObj, tableNew);
-
-    console.log(tableCombined);
 
     await addTableToDB(tableCombined, message.guild.id);
 
