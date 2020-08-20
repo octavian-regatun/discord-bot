@@ -13,10 +13,10 @@
   ],
   "rules": {
     "@typescript-eslint/no-require-imports": "error",
-    "@typescript-eslint/explicit-module-boundary-types": "error"
-    // "@typescript-eslint/no-unsafe-member-access": "off",
-    // "@typescript-eslint/no-unsafe-call": "off",
-    // "@typescript-eslint/no-unsafe-assignment": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "error",
+    "@typescript-eslint/no-unsafe-member-access": "off",
+    "@typescript-eslint/no-unsafe-call": "off",
+    "@typescript-eslint/no-unsafe-assignment": "off"
     // "@typescript-eslint/no-non-uitnull-assertion": "off"
   }
 }
