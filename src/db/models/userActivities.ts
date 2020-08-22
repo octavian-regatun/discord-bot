@@ -1,13 +1,16 @@
-import { IUser } from './../../utils/data';
+import { IUser, IActivity } from './../../utils/data';
 import mongoose, { Schema, Document } from 'mongoose';
 import { Snowflake } from 'discord.js';
-import { IActivity } from '../../utils/data';
+
+export interface IActivitySchema extends IActivity {
+  updatedAt: number;
+}
 
 export interface IUserActivitiesSchema extends Document {
   user: IUser;
-  activities: IActivity[];
+  activities: IActivitySchema[];
   guildsId: Snowflake[];
-  createdAt: number;
+  updatedAt: number;
 }
 
 const UserActivitiesSchema: Schema = new Schema({
@@ -15,9 +18,9 @@ const UserActivitiesSchema: Schema = new Schema({
     name: String,
     id: String,
   },
-  activities: Array,
+  activities: { type: Array, required: true },
   guildsId: Array,
-  createdAt: Date,
+  updatedAt: Date,
 });
 
 // Export the model and return your IUser interface
