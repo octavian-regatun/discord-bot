@@ -5,7 +5,6 @@ export type ITable = (string | number | undefined | null)[][];
 export interface IUserActivities {
   user: IUser;
   activities: IActivity[];
-  guildId: Snowflake;
 }
 
 export interface IUser {
