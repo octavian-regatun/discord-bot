@@ -18,6 +18,7 @@ export const connectToDB = async (): Promise<void> => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
+      useFindAndModify: false,
     })
     .then(() => {
       return console.log(`Connected to DB`);
