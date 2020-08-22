@@ -19,7 +19,7 @@
     "moment": "^2.27.0",
     "mongoose": "^5.9.28",
     "prettier": "^2.0.5",
-    "table": "^5.4.6"
+    "table": "^5.4.6",
     "text2png": "^2.3.0"
   },
   "devDependencies": {
