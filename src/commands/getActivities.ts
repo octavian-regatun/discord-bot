@@ -91,7 +91,9 @@ function getTable(usersActivities: IUserActivities[]) {
     addRow(i.user.name, table);
     for (const activity of i.activities) {
       const abbreviatedActivity = abbreviateActivity(activity.name);
-      addColumn(abbreviatedActivity, table);
+      if (!isActivityInTable(abbreviatedActivity, table)) {
+        addColumn(abbreviatedActivity, table);
+      }
       const indexUser = getIndexUser(i.user.name, table);
       const indexActivity = getIndexActivity(abbreviatedActivity, table);
       const { h, m, s } = secondsToTime(activity.duration);
