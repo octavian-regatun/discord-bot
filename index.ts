@@ -6,6 +6,7 @@ import Discord from 'discord.js';
 import { connectToDB } from './src/db/connectDB';
 
 import { getActivities } from './src/commands/getActivities';
+import { startGetActivities } from './src/commands/startGetActivities';
 
 dotenv.config();
 
@@ -35,7 +36,7 @@ client.on('message', (message: Message) => {
       break;
 
     case 'startGetActivities':
-      // require('./src/commands/startGetActivities')(message, args[0]);
+      void startGetActivities(message, parseFloat(args[0]));
       break;
 
     case 'stopGetActivities':
