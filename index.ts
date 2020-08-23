@@ -7,6 +7,7 @@ import { connectToDB } from './src/db/connectDB';
 
 import { getActivities } from './src/commands/getActivities';
 import { startGetActivities } from './src/commands/startGetActivities';
+import { stopGetActivities } from './src/commands/stopGetActivities';
 
 dotenv.config();
 
@@ -40,7 +41,7 @@ client.on('message', (message: Message) => {
       break;
 
     case 'stopGetActivities':
-      // require('./src/commands/stopGetActivities')(message);
+      void stopGetActivities();
       break;
 
     default:

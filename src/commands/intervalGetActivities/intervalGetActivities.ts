@@ -13,3 +13,9 @@ export function startIntervalGetActivities(
     },
     timer,
     message
+  );
+}
+
+export function stopIntervalGetActivities(): void {
+  clearInterval(interval);
+}
