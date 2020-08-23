@@ -19,6 +19,7 @@ import {
   getIndexUser,
   getIndexActivity,
   formatTable,
+  isActivityInTable,
 } from '../utils/table';
 
 import { table } from 'table';
