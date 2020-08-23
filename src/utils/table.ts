@@ -3,7 +3,7 @@ import { ITable } from './data';
 export function formatTable(table: ITable): void {
   const numberOfColumns = table[0].length;
 
-  for (const [rowNumber, row] of table.entries()) {
+  for (const row of table) {
     for (let column = 0; column < numberOfColumns; column++) {
       if (row[column] === undefined) row[column] = null;
     }
