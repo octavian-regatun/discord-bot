@@ -25,7 +25,10 @@ import { table } from 'table';
 import fs from 'fs/promises';
 import text2png from 'text2png';
 
-export async function getActivities(message: Message): Promise<void> {
+export async function getActivities(
+  message: Message,
+  interval = false
+): Promise<void> {
   if (message.guild == undefined) {
     throw new Error('property guild of message parameter is undefined');
   }
@@ -67,22 +70,26 @@ export async function getActivities(message: Message): Promise<void> {
 
   // show from db
 
-  const usersActivitiesDB = await getUsersActivitiesFromGuildFromDB(
-    message.guild.id
-  );
+  if (interval) {
+    await message.channel.send('Users Activities UPDATED');
+  } else {
+    const usersActivitiesDB = await getUsersActivitiesFromGuildFromDB(
+      message.guild.id
+    );
 
-  const myTable = getTable(usersActivitiesDB);
+    const myTable = getTable(usersActivitiesDB);
 
-  await fs.writeFile(
-    'image.png',
-    text2png(table(myTable), {
-      font: '32px Courier New',
-      color: 'white',
-      strokeWidth: 2,
-    })
-  );
+    await fs.writeFile(
+      'image.png',
+      text2png(table(myTable), {
+        font: '32px Courier New',
+        color: 'white',
+        strokeWidth: 2,
+      })
+    );
 
-  await message.channel.send({ files: ['image.png'] });
+    await message.channel.send({ files: ['image.png'] });
+  }
 }
 
 function getTable(usersActivities: IUserActivities[]) {
