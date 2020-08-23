@@ -91,3 +91,11 @@ export function formatTime(time: number): string {
     return time.toString();
   }
 }
+
+export function getMinuteString(minute: number): string {
+  if (minute <= 1) {
+    return `${minute} minute`;
+  } else {
+    return `${minute} minutes`;
+  }
+}
