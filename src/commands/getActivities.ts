@@ -69,7 +69,7 @@ export async function getActivities(
   }
 
   if (interval) {
-    await message.channel.send('Users Activities UPDATED');
+    console.log('Users Activities UPDATED');
   } else {
     const usersActivitiesDB = await getUsersActivitiesFromGuildFromDB(
       message.guild.id
