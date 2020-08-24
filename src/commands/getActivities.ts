@@ -23,7 +23,7 @@ import {
 } from '../utils/table';
 
 import { table } from 'table';
-import fs from 'fs/promises';
+import fs from 'fs';
 import text2png from 'text2png';
 
 export async function getActivities(
@@ -80,7 +80,7 @@ export async function getActivities(
 
     const myTable = getTable(usersActivitiesDB);
 
-    await fs.writeFile(
+    fs.writeFileSync(
       'image.png',
       text2png(table(myTable), {
         font: '32px Courier New',
