@@ -46,7 +46,6 @@ export async function getActivities(
     throw new Error('usersActivitiesDiscord is undefined');
   }
 
-  // update db
   for (const userActivitiesDiscord of usersActivitiesDiscord) {
     if (await isUserActivitiesInDB(userActivitiesDiscord.user.id)) {
       const userActivitiesDB = await getUserActivitiesFromDB(
@@ -68,8 +67,6 @@ export async function getActivities(
       await addUserActivitiesToDB(message.guild.id, userActivitiesDiscord);
     }
   }
-
-  // show from db
 
   if (interval) {
     await message.channel.send('Users Activities UPDATED');
