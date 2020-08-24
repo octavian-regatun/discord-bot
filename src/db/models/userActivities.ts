@@ -23,7 +23,6 @@ const UserActivitiesSchema: Schema = new Schema({
   updatedAt: Date,
 });
 
-// Export the model and return your IUser interface
 export default mongoose.model<IUserActivitiesSchema>(
   'UserActivities',
   UserActivitiesSchema,

@@ -1,8 +1,6 @@
 import mongoose from 'mongoose';
 
 export const connectToDB = async (): Promise<void> => {
-  // add your own uri below
-
   if (process.env.DB_USERNAME == undefined) {
     throw new Error('add DB_USERNAME field to .env file');
   }

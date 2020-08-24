@@ -23,7 +23,7 @@ import {
 } from '../utils/table';
 
 import { table } from 'table';
-import fs from 'fs/promises';
+import fs from 'fs';
 import text2png from 'text2png';
 
 export async function getActivities(
@@ -46,7 +46,6 @@ export async function getActivities(
     throw new Error('usersActivitiesDiscord is undefined');
   }
 
-  // update db
   for (const userActivitiesDiscord of usersActivitiesDiscord) {
     if (await isUserActivitiesInDB(userActivitiesDiscord.user.id)) {
       const userActivitiesDB = await getUserActivitiesFromDB(
@@ -69,10 +68,8 @@ export async function getActivities(
     }
   }
 
-  // show from db
-
   if (interval) {
-    await message.channel.send('Users Activities UPDATED');
+    console.log('Users Activities UPDATED');
   } else {
     const usersActivitiesDB = await getUsersActivitiesFromGuildFromDB(
       message.guild.id
@@ -80,7 +77,7 @@ export async function getActivities(
 
     const myTable = getTable(usersActivitiesDB);
 
-    await fs.writeFile(
+    fs.writeFileSync(
       'image.png',
       text2png(table(myTable), {
         font: '32px Courier New',

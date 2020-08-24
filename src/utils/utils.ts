@@ -1,41 +1,5 @@
 import moment from 'moment';
-import { User, Message } from 'discord.js';
-import { table } from 'table';
-import fs from 'fs/promises';
-import text2png from 'text2png';
-
-import { ITable } from './data';
-
-export async function sendImageTable(
-  message: Message,
-  tableArray: ITable
-): Promise<void> {
-  if (message == undefined) {
-    throw new Error('message parameter is undefined');
-  }
-
-  await fs.writeFile(
-    'image.png',
-    text2png(table(tableArray), {
-      color: 'white',
-      font: '32px Lucida Console',
-      strokeWidth: 2,
-    })
-  );
-
-  // const img = await textToImage.generate(table(tableArray), {
-  //   fontFamily: 'Consolas',
-  // });
-  // const ext: string = img.split(';')[0].match(/jpeg|png|gif/)[0];
-  // // strip off the data: url prefix to get just the base64-encoded bytes
-  // const data = img.replace(/^data:image\/\w+;base64,/, '');
-  // const buf = Buffer.from(data, 'base64');
-  // await fs.writeFile(`image.${ext}`, buf);
-
-  await message.channel.send('This is the activities table:', {
-    files: ['image.png'],
-  });
-}
+import { User } from 'discord.js';
 
 export function isUserOffline(user: User): boolean {
   return user.presence.status === 'offline';
